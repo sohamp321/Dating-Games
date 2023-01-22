@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="chatId" content="">
+    <meta name="chatProfile" content="">
+    <meta name="selfId" content="{{selfUser.userid}}">
+
+
+    <title> PRIVET </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('user.static', filename='assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('user.static', filename='assets/css/fontawsom-all.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('user.static', filename='assets/css/style.css') }}">
+    <link href="{{ url_for('user.static', filename='assets/images/hero-img.png') }}" rel="icon">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ url_for('static', filename='assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='assets/css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"
+        defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js') }}"
+        defer=""></script>
+
+    <!-- Google Fonts -->
+    <!-- <script src="{{ url_for('static', filename='assets/js/hashing.js') }}"></script> -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="u-clearfix u-header u-palette-2-light-2 u-header" id="sec-fa45">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <a href="/home" class="u-image u-logo u-image-1">
+                <img src="{{ url_for('static', filename='images/default-logo.png') }}"
+                    class="u-logo-image u-logo-image-1" style="margin-left: 70px;">
+            </a>
+            <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+                <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 500;">
+                    <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-color u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-decoration u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                        href="#">
+                        <svg class="u-svg-link" viewBox="0 0 24 24">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                        </svg>
+                        <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <rect y="1" width="16" height="2"></rect>
+                                <rect y="7" width="16" height="2"></rect>
+                                <rect y="13" width="16" height="2"></rect>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+                <div class="u-custom-menu u-nav-container">
+                    <ul class="u-nav u-spacing-2 u-unstyled u-nav-1">
+                        <li class="u-nav-item"><a
+                                class="u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-2-base u-text-hover-palette-2-dark-1 u-text-white"
+                                href="/home" style="padding: 10px 20px;">Home</a>
+                        </li>
+                        <li class="u-nav-item"><a
+                                class="u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-2-base u-text-hover-palette-2-dark-1 u-text-white"
+                                href="/user/profile" style="padding: 10px 20px;">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="u-custom-menu u-nav-container-collapse">
+                    <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                        <div class="u-inner-container-layout u-sidenav-overflow">
+                            <div class="u-menu-close"></div>
+                            <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href=" /home">Home</a>
+                                </li>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                        href="/user/profile">Profile</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+                </div>
+            </nav>
+            <a href="/user/signout"
+                class="u-btn u-btn-round u-button-style u-palette-2-light-3 u-radius-20 u-text-palette-2-base u-btn-1"
+                style="margin-right: 80px;">Log
+                Out</a><span class=" u-file-icon u-hover-feature u-icon u-icon-1" data-href="/user/messages"
+                title="Notifs"><img src="{{ url_for('static', filename='images/1827370.png') }}" alt=""></span>
+        </div>
+    </header>
+    <div style="height: 60px;"></div>
+    <div class="container">
+        <h1 class=" text-center">Chat Window</h1>
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div class="headind_srch">
+                        <div class="recent_heading">
+                            <h4>Recent</h4>
+                        </div>
+                    </div>
+                    <div class="inbox_chat">
+                        {% if user != None and user.userid != selfUser.userid %}
+                        <div id="{{user.userid+'_Title'}}" class="chat_list"
+                            onclick="openchat('{{user.userid}}','{{user.avatar}}')" style="cursor: pointer;">
+                            <div class="chat_people">
+                                <div class="chat_img">
+                                    {% if user.avatar == 1 %}
+                                    <img src="{{ url_for('user.static', filename='assets/images/avatar1.png') }}">
+                                    {% elif user.avatar == 2 %}
+                                    <img src="{{ url_for('user.static', filename='assets/images/avatar2.png') }}">
+                                    {% elif user.avatar == 3 %}
+                                    <img src="{{ url_for('user.static', filename='assets/images/avatar3.png') }}">
+                                    {% elif user.avatar == 4 %}
+                                    <img src="{{ url_for('user.static', filename='assets/images/avatar4.png') }}">
+                                    {% elif user.avatar == 5 %}
+                                    <img src="{{ url_for('user.static', filename='assets/images/avatar5.png') }}">
+                                    {% endif %}
+                                </div>
+                                <div class="chat_ib">
+                                    <h5>{{user.name}}
+                                        {% if user.userid in selfUser.messages%}
+                                        <span class="chat_date">{{ selfUser.messages[user.userid][-1]["date"]}}</span>
+                                        <p> {{ selfUser.messages[user.userid][-1]["content"] }}</p>
+                                        {% else %}
+                                        <p>Chat with {{user.name.split(" ")[0]}}</p>
+                                        {% endif %}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tasks_Title" class="chat_list""
+                            style=" cursor: pointer;">
+                            <div class="chat_people">
+                                <div class="chat_img">
+                                    <img src="{{ url_for('user.static', filename='assets/images/games.png') }}">
+                                </div>
+                                <div class="chat_ib">
+                                    <h5>Know Each Other
+                                        <p>Test how much you know about each other</p>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tasks_Title" class="chat_list" style="cursor: pointer;">
+                            <div class="chat_people">
+                                <div class="chat_img">
+                                    <img src="{{ url_for('user.static', filename='assets/images/games2.jpg') }}">
+                                </div>
+                                <div class="chat_ib">
+                                    <h5>Today's Task
+                                        <p>Complete Today's Task</p>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tasks_Title" class="chat_list" style="cursor: pointer;">
+                            <div class="chat_people">
+                                <div class="chat_img">
+                                    <img src="{{ url_for('user.static', filename='assets/images/games1.jpg') }}">
+                                </div>
+                                <div class="chat_ib">
+                                    <h5>Couple Games
+                                        <p>Play Couple Games and embrace bond between you</p>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <h3 style="padding: 200px 20px;color:#05728f;">{{warning}}</h3>
+                    </div>
+                </div>
+                <div id="messages_window" class="mesgs">
+                    {% if user != None and user.userid != selfUser.userid %}
+                    <div id="{{user.userid}}" class="msg_history" style="display:none">
+                        {% for message in selfUser.messages[user.userid] %}
+                        {% if message["sender"] == selfUser.userid %}
+                        <div class="outgoing_msg">
+                            <!--
+                            <div class="sent_msg">
+                                <p>{{message["content"]}}</p>
+                                <span class="time_date"> {{message["time"]}} | {{message["date"]}}</span>
+                            </div>
+                            -->
+                        </div>
+                        {% else %}
+                        <div class="incoming_msg">
+                            <div class="incoming_msg_img">
+                                <!--
+                                {% if user.avatar == 1 %}
+                                <img src="{{ url_for('user.static', filename='assets/images/avatar1.png') }}">
+                                {% elif user.avatar == 2 %}
+                                <img src="{{ url_for('user.static', filename='assets/images/avatar2.png') }}">
+                                {% elif user.avatar == 3 %}
+                                <img src="{{ url_for('user.static', filename='assets/images/avatar3.png') }}">
+                                {% elif user.avatar == 4 %}
+                                <img src="{{ url_for('user.static', filename='assets/images/avatar4.png') }}">
+                                {% elif user.avatar == 5 %}
+                                <img src="{{ url_for('user.static', filename='assets/images/avatar5.png') }}">
+                                {% endif %}
+                            </div>
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>{{message["content"]}}</p>
+                                    <span class="time_date"> {{message["time"]}} | {{message["date"]}}</span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <div id="tasks" class="msg_history" style="display:none">
+                        {% for message in selfUser.messages[user.userid] %}
+                        {% if message["sender"] == selfUser.userid %}
+                        <div class="outgoing_msg">
+                            <!--
+                                                <div class="sent_msg">
+                                                    <p>{{message["content"]}}</p>
+                                                    <span class="time_date"> {{message["time"]}} | {{message["date"]}}</span>
+                                                </div>
+                                                -->
+                        </div>
+                        {% else %}
+                        <div class="incoming_msg">
+                            <div class="incoming_msg_img">
+                                <!--
+                                                    {% if user.avatar == 1 %}
+                                                    <img src="{{ url_for('user.static', filename='assets/images/avatar1.png') }}">
+                                                    {% elif user.avatar == 2 %}
+                                                    <img src="{{ url_for('user.static', filename='assets/images/avatar2.png') }}">
+                                                    {% elif user.avatar == 3 %}
+                                                    <img src="{{ url_for('user.static', filename='assets/images/avatar3.png') }}">
+                                                    {% elif user.avatar == 4 %}
+                                                    <img src="{{ url_for('user.static', filename='assets/images/avatar4.png') }}">
+                                                    {% elif user.avatar == 5 %}
+                                                    <img src="{{ url_for('user.static', filename='assets/images/avatar5.png') }}">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="received_msg">
+                                                    <div class="received_withd_msg">
+                                                        <p>{{message["content"]}}</p>
+                                                        <span class="time_date"> {{message["time"]}} | {{message["date"]}}</span>
+                                                    </div>
+                                                    -->
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="type_msg">
+                        <div class="input_msg_write">
+                            <input id="input_message" type="text" class="write_msg" placeholder="Type a message" />
+                            <button id="sendBtn" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 90px;"></div>
+
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-82c2">
+    </footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+        <p class="u-text">
+            <span>Developed by Soham and Ankush</span>
+        </p>
+    </section>
+
+    <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('user.static', filename='assets/js/main.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var socket = io.connect("0.0.0.0:5000")
+            console.log("connecting")
+            console.log(socket)
+            socket.on('connect', function () {
+                mes = { "sender": document.querySelector('meta[name="selfId"]').content, "content": "User Connected!", "reciever": document.querySelector('meta[name="chatId"]').content }
+                console.log("connected")
+                socket.send(mes)
+            })
+            socket.on('message', function (message) {
+                var message = JSON.parse(message)
+                if (message["reciever"] == document.querySelector('meta[name="selfId"]').content) {
+                    console.log(document.querySelector('meta[name="chatProfile"]').content)
+                    if (document.querySelector('meta[name="chatProfile"]').content == 1) {
+                        document.getElementById(message["sender"]).innerHTML += '<div class="incoming_msg"><div class="incoming_msg_img"> <img src="/user/static/assets/images/avatar1.png"> </div> <div class="received_msg"> <div class="received_withd_msg"> <p>' + message["content"] + '</p> <span class="time_date"> ' + message["time"] + ' | ' + message["date"] + '</span></div></div></div >'
+                    } if (document.querySelector('meta[name="chatProfile"]').content == 2) {
+                        document.getElementById(message["sender"]).innerHTML += '<div class="incoming_msg"><div class="incoming_msg_img"> <img src="/user/static/assets/images/avatar2.png"> </div> <div class="received_msg"> <div class="received_withd_msg"> <p>' + message["content"] + '</p> <span class="time_date"> ' + message["time"] + ' | ' + message["date"] + '</span></div></div></div >'
+                    } if (document.querySelector('meta[name="chatProfile"]').content == 3) {
+                        document.getElementById(message["sender"]).innerHTML += '<div class="incoming_msg"><div class="incoming_msg_img"> <img src="/user/static/assets/images/avatar3.png"> </div> <div class="received_msg"> <div class="received_withd_msg"> <p>' + message["content"] + '</p> <span class="time_date"> ' + message["time"] + ' | ' + message["date"] + '</span></div></div></div >'
+                    } if (document.querySelector('meta[name="chatProfile"]').content == 4) {
+                        document.getElementById(message["sender"]).innerHTML += '<div class="incoming_msg"><div class="incoming_msg_img"> <img src="/user/static/assets/images/avatar4.png"> </div> <div class="received_msg"> <div class="received_withd_msg"> <p>' + message["content"] + '</p> <span class="time_date"> ' + message["time"] + ' | ' + message["date"] + '</span></div></div></div >'
+                    } if (document.querySelector('meta[name="chatProfile"]').content == 5) {
+                        document.getElementById(message["sender"]).innerHTML += '<div class="incoming_msg"><div class="incoming_msg_img"> <img src="/user/static/assets/images/avatar5.png"> </div> <div class="received_msg"> <div class="received_withd_msg"> <p>' + message["content"] + '</p> <span class="time_date"> ' + message["time"] + ' | ' + message["date"] + '</span></div></div></div >'
+                    }
+                }
+            })
+            $('#sendBtn').on('click', function () {
+                mes = { "sender": document.querySelector('meta[name="selfId"]').content, "content": document.getElementById("input_message").value, "reciever": document.querySelector('meta[name="chatId"]').content, "date": getDate(), "time": getTime() }
+                if (mes["content"] != "" && document.querySelector('meta[name="chatId"]').content != "") {
+                    document.getElementById(document.querySelector('meta[name="chatId"]').content).innerHTML += '<div class="outgoing_msg"> <div class="sent_msg"> <p>' + mes["content"] + '</p> <span class="time_date"> ' + mes["time"] + ' | ' + mes["date"] + '</span></div></div> '
+                    document.getElementById("input_message").value = ""
+                    socket.send(mes)
+                }
+            })
+            function getDate() {
+                const d = new Date();
+                var month = d.getMonth()
+                var day = d.getDate()
+                var date = ""
+                if (month == 0)
+                    date += "January"
+                else if (month == 1)
+                    date += "February"
+                else if (month == 2)
+                    date += "March"
+                else if (month == 3)
+                    date += "April"
+                else if (month == 4)
+                    date += "May"
+                else if (month == 5)
+                    date += "June"
+                else if (month == 6)
+                    date += "July"
+                else if (month == 7)
+                    date += "August"
+                else if (month == 8)
+                    date += "September"
+                else if (month == 9)
+                    date += "October"
+                else if (month == 10)
+                    date += "November"
+                else if (month == 11)
+                    date += "December"
+                date += " " + day
+                return date
+            }
+            function getTime() {
+                const d = new Date()
+                return d.toLocaleTimeString('en-US', { hour12: true })
+            }
+        })
+        function openchat(userid, avatar) {
+            var i;
+            x = document.getElementsByClassName("msg_history")
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                document.getElementById(x[i].id + "_Title").classList.remove('active_chat')
+            }
+            document.getElementById(userid).style.display = "block";
+            document.getElementById(userid + '_Title').classList.add('active_chat')
+            document.querySelector('meta[name="chatId"]').setAttribute("content", userid);
+            document.querySelector('meta[name="chatProfile"]').setAttribute("content", avatar);
+        }
+    </script>
+
+    <style type="text/css">
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .inbox_people {
+            background: #f8f8f8 none repeat scroll 0 0;
+            float: left;
+            overflow: hidden;
+            width: 40%;
+            border-right: 1px solid #c4c4c4;
+        }
+
+        .inbox_msg {
+            border: 1px solid #c4c4c4;
+            clear: both;
+            overflow: hidden;
+        }
+
+        .top_spac {
+            margin: 20px 0 0;
+        }
+
+
+        .recent_heading {
+            float: left;
+            width: 40%;
+        }
+
+        .srch_bar {
+            display: inline-block;
+            text-align: right;
+            width: 60%;
+        }
+
+        .headind_srch {
+            padding: 10px 29px 10px 20px;
+            overflow: hidden;
+            border-bottom: 1px solid #c4c4c4;
+        }
+
+        .recent_heading h4 {
+            color: #05728f;
+            font-size: 21px;
+            margin: auto;
+        }
+
+        .srch_bar input {
+            border: 1px solid #cdcdcd;
+            border-width: 0 0 1px 0;
+            width: 80%;
+            padding: 2px 0 4px 6px;
+            background: none;
+        }
+
+        .srch_bar .input-group-addon button {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            border: medium none;
+            padding: 0;
+            color: #707070;
+            font-size: 18px;
+        }
+
+        .srch_bar .input-group-addon {
+            margin: 0 0 0 -27px;
+        }
+
+        .chat_ib h5 {
+            font-size: 15px;
+            color: #464646;
+            margin: 0 0 8px 0;
+        }
+
+        .chat_ib h5 span {
+            font-size: 13px;
+            float: right;
+        }
+
+        .chat_ib p {
+            font-size: 14px;
+            color: #989898;
+            margin: auto
+        }
+
+        .chat_img {
+            float: left;
+            width: 11%;
+        }
+
+        .chat_ib {
+            float: left;
+            padding: 0 0 0 15px;
+            width: 88%;
+        }
+
+        .chat_people {
+            overflow: hidden;
+            clear: both;
+        }
+
+        .chat_list {
+            border-bottom: 1px solid #c4c4c4;
+            margin: 0;
+            padding: 18px 16px 10px;
+        }
+
+        .inbox_chat {
+            height: 550px;
+            overflow-y: scroll;
+        }
+
+        .active_chat {
+            background: #ebebeb;
+        }
+
+        .incoming_msg_img {
+            display: inline-block;
+            width: 6%;
+        }
+
+        .received_msg {
+            display: inline-block;
+            padding: 0 0 0 10px;
+            vertical-align: top;
+            width: 92%;
+        }
+
+        .received_withd_msg p {
+            background: #ebebeb none repeat scroll 0 0;
+            border-radius: 3px;
+            color: #646464;
+            font-size: 14px;
+            margin: 0;
+            padding: 5px 10px 5px 12px;
+            width: 100%;
+        }
+
+        .time_date {
+            color: #747474;
+            display: block;
+            font-size: 12px;
+            margin: 8px 0 0;
+        }
+
+        .received_withd_msg {
+            width: 57%;
+        }
+
+        .mesgs {
+            float: left;
+            padding: 30px 15px 0 25px;
+            width: 60%;
+        }
+
+        .sent_msg p {
+            background: #05728f none repeat scroll 0 0;
+            border-radius: 3px;
+            font-size: 14px;
+            margin: 0;
+            color: #fff;
+            padding: 5px 10px 5px 12px;
+            width: 100%;
+        }
+
+        .outgoing_msg {
+            overflow: hidden;
+            margin: 26px 0 26px;
+        }
+
+        .sent_msg {
+            float: right;
+            width: 46%;
+        }
+
+        .input_msg_write input {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            border: medium none;
+            color: #4c4c4c;
+            font-size: 15px;
+            min-height: 48px;
+            width: 100%;
+        }
+
+        .type_msg {
+            border-top: 1px solid #c4c4c4;
+            position: relative;
+        }
+
+        .msg_send_btn {
+            background: #05728f none repeat scroll 0 0;
+            border: medium none;
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            font-size: 17px;
+            height: 33px;
+            position: absolute;
+            right: 0;
+            top: 11px;
+            width: 33px;
+        }
+
+        .messaging {
+            padding: 0 0 50px 0;
+        }
+
+        .msg_history {
+            height: 516px;
+            overflow-y: auto;
+        }
+    </style>
+
+</body>
+
+</html

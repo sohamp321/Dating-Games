@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="Welcome to the Couple Games, Loyal Activities">
+  <meta name="description" content="">
+  <title>Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css') }}" media="screen">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}" media="screen">
+  <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js') }}"
+    defer=""></script>
+  <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js') }}"
+    defer=""></script>
+  <meta name="generator" content="Nicepage 5.3.6, nicepage.com">
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+  <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/default-logo.png"
+}</script>
+  <meta name="theme-color" content="#478ac9">
+  <meta property="og:title" content="Home">
+  <meta property="og:type" content="website">
+</head>
+
+<body class="u-body u-xl-mode" data-lang="en">
+  <header class="u-clearfix u-header u-palette-2-light-2 u-header" id="sec-fa45">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <a href="/home" class="u-image u-logo u-image-1">
+        <img src="{{ url_for('static', filename='images/default-logo.png') }}" class="u-logo-image u-logo-image-1">
+      </a>
+      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 500;">
+          <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-color u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-decoration u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+            href="#">
+            <svg class="u-svg-link" viewBox="0 0 24 24">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+            </svg>
+            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+              xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <rect y="1" width="16" height="2"></rect>
+                <rect y="7" width="16" height="2"></rect>
+                <rect y="13" width="16" height="2"></rect>
+              </g>
+            </svg>
+          </a>
+        </div>
+        <div class="u-custom-menu u-nav-container">
+          <ul class="u-nav u-spacing-2 u-unstyled u-nav-1">
+            <li class="u-nav-item"><a
+                class="u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-2-base u-text-hover-palette-2-dark-1 u-text-white"
+                href="/home" style="padding: 10px 20px;">Home</a>
+            </li>
+            <li class="u-nav-item"><a
+                class="u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-2-base u-text-hover-palette-2-dark-1 u-text-white"
+                href="/user/profile" style="padding: 10px 20px;">Profile</a>
+            </li>
+          </ul>
+        </div>
+        <div class="u-custom-menu u-nav-container-collapse">
+          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+            <div class="u-inner-container-layout u-sidenav-overflow">
+              <div class="u-menu-close"></div>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/home">Home</a>
+                </li>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/user/profile">Profile</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+        </div>
+      </nav>
+      <a href="/user/signout"
+        class="u-btn u-btn-round u-button-style u-palette-2-light-3 u-radius-20 u-text-palette-2-base u-btn-1">Log
+        Out</a><span class="u-file-icon u-hover-feature u-icon u-icon-1" data-href="/user/messages" title="Notifs"><img
+          src="{{ url_for('static', filename='images/1827370.png') }}" alt=""></span>
+    </div>
+  </header>
+  <section class="u-clearfix u-section-1" id="carousel_1200">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h1 class="u-align-left u-text u-text-default u-text-palette-2-base u-text-1">Welcome to the Couple Games</h1>
+      <a href="/user/messages"
+        class="u-border-none u-btn u-btn-round u-button-style u-grey-10 u-hover-palette-2-base u-radius-50 u-btn-1">Get
+        Started<span style="font-weight: 400;">
+          <span style="font-weight: 700;"></span>
+        </span>
+      </a>
+      <div class="u-container-style u-group u-palette-2-light-1 u-shape-rectangle u-group-1">
+        <div class="u-container-layout u-container-layout-1">
+          <h2 class="u-align-center u-text u-text-default u-text-2">Loyal Activities</h2>
+          <h3 class="u-align-center u-text u-text-default u-text-3">Indulge in numerous activities that earn you
+            Loyal-Points</h3><span class="u-file-icon u-icon u-text-white u-icon-1"><img
+              src="{{ url_for('static', filename='images/837993-39961f69.png') }}" alt=""></span><span
+            class="u-file-icon u-icon u-text-white u-icon-2"><img
+              src="{{ url_for('static', filename='images/1206839-63d4ddba.png') }}" alt=""></span>
+          <h4 class="u-text u-text-default u-text-4">Plan A Gift</h4>
+          <h4 class="u-text u-text-default u-text-5">D-I-O Tasks</h4>
+          <h5 class="u-text u-text-6">Send your loved ones a surprise gift every month and get ratings for it</h5>
+          <h5 class="u-text u-text-7">Do-It-Ourselves tasks, suggested activites for the couple to be performed
+            together.&nbsp;</h5>
+        </div>
+      </div>
+      <div class="u-container-style u-group u-white u-group-2">
+        <div class="u-container-layout u-container-layout-2">
+          <h2 class="u-align-center u-text u-text-default u-text-palette-2-base u-text-8">Daily Tasks</h2>
+          <h3 class="u-align-center u-text u-text-default u-text-palette-2-base u-text-9">Perform these tasks daily and
+            strengthen your connection.</h3><span class="u-file-icon u-icon u-text-palette-2-light-1 u-icon-3"><img
+              src="{{ url_for('static', filename='images/7660497-e1e3a6b3.png') }}" alt=""></span><span
+            class="u-file-icon u-icon u-text-palette-2-light-1 u-icon-4"><img
+              src="{{ url_for('static', filename='images/7019818-be5d2300.png') }}" alt=""></span>
+          <h4 class="u-text u-text-default u-text-palette-2-base u-text-10">Mood​ L<span
+              style="font-weight: 700;"></span>og
+          </h4>
+          <h4 class="u-text u-text-default u-text-palette-2-base u-text-11">Send a Pic Daily</h4>
+          <h5 class="u-text u-text-default u-text-palette-2-base u-text-12">How are you feeling today?</h5>
+          <h5 class="u-text u-text-default u-text-palette-2-base u-text-13">Send a special pic to your special one</h5>
+        </div>
+      </div>
+      <div class="u-container-style u-group u-palette-2-light-1 u-group-3">
+        <div class="u-container-layout u-container-layout-3">
+          <h2 class="u-align-center u-text u-text-default u-text-14">Ga<span style="font-weight: 700;"></span>mes<br>
+          </h2>
+          <h3 class="u-align-center u-text u-text-default u-text-15">How bout some PlayTime</h3><span
+            class="u-file-icon u-icon u-text-white u-icon-5"><img
+              src="{{ url_for('static', filename='images/3281218-c746ed33.png') }}" alt=""></span><span
+            class="u-file-icon u-icon u-text-white u-icon-6"><img
+              src="{{ url_for('static', filename='images/54481-2a7512da.png') }}" alt=""></span>
+          <h4 class="u-text u-text-16">One Word Story</h4>
+          <h4 class="u-text u-text-default u-text-17">Scavenger Hunt</h4>
+          <h5 class="u-text u-text-default u-text-18">Finding stuff out in your vicinity</h5>
+          <h5 class="u-text u-text-default u-text-19">Make a beautiful story.. One Word At A Time</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-82c2">
+  </footer>
+  <section class="u-backlink u-clearfix u-grey-80">
+    <p class="u-text">
+      <span>Developed by Soham and Ankush</span>
+    </p>
+  </section>
+
+</body>
+
+</html>
