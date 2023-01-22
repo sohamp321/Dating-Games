@@ -1,6 +1,5 @@
 .vscode
-lenv
-wenv
+env
 __pycache__
 tourist.pptx
 EDPROJECT.pptm
